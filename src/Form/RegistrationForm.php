@@ -11,13 +11,20 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 class RegistrationForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
+            
+            ->add('email', EmailType::class, [
+                'label' => 'Email',
+                'attr' => ['placeholder' => 'Entrer votre email'],
+            ])
+            
             ->add('agreeTerms', CheckboxType::class, [
                                 'mapped' => false,
                 'constraints' => [
@@ -26,6 +33,15 @@ class RegistrationForm extends AbstractType
                     ]),
                 ],
             ])
+            ->add('firstName', TextType::class, [
+                'label' => 'Prenom',
+                'attr' => ['placeholder' => 'Entrer votre prénom'],
+            ])
+            ->add('lastName', TextType::class, [
+                'label' => 'Nom',
+                'attr' => ['placeholder' => 'Entrer votre nom'],
+            ])
+           
             ->add('plainPassword', PasswordType::class, [
                                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
@@ -33,13 +49,13 @@ class RegistrationForm extends AbstractType
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Veuillez entrer un mot de passe',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => 'Votre mot de passe doit contenir au moins 6 caractères',
                         // max length allowed by Symfony for security reasons
-                        'max' => 4096,
+                        'max' => 12,
                     ]),
                 ],
             ])
