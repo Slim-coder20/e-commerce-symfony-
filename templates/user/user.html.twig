@@ -13,40 +13,42 @@
 				<tr>
 					<th class="text-primary">Id</th>
 					<th class="text-primary">Email</th>
-                    <th class="text-primary">Nom</th>
-                    <th class="text-primary">Prénom</th>
-                    <th class="text-primary">Roles</th>
+					<th class="text-primary">Nom</th>
+					<th class="text-primary">Prénom</th>
+					<th class="text-primary">Roles</th>
 					<th class="text-primary">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
 				{% for user in users %}
 					<tr>
-						<td>{{ user.id }}</td> 
+						<td>{{ user.id }}</td>
 						<td>{{ user.email }}</td>
-                        <td>{{ user.firstName }}</td>
-                        <td>{{ user.lastName }}</td>
-                        <td>{{ user.roles | join(', ') }}</td>
+						<td>{{ user.firstName }}</td>
+						<td>{{ user.lastName }}</td>
 						<td>
-							<a href="{{ path('app_category_new', {'id': user.id}) }}" class="btn btn-success">Ajouter</a>
-							|
-							<a href="{{ path('app_category_update', {'id': user.id}) }}" class="btn btn-primary">Modifier</a>
-							|
-							<a href="{{ path('app_category_delete', {'id': user.id}) }}" onclick="return confirm ('Voulez-vous vraiment supprimer cette catégorie ?')" class="btn btn-danger">Supprimer</a>
+							{% for role in user.roles %}
+								{{ role}}
+
+							{% endfor %}
+						</td>
+						<td>
+							{% if ('ROLE_ADMIN' in user.roles) == false  %}
+
+								{% if ('ROLE_EDITOR' in user.roles) == false %}
+									<a href="{{ path('app_user_to_editor', {'id': user.id}) }}" class="btn btn-outline-success">Ajouter éditeur</a>
+								{% else %}
+									<a href="{{ path('app_user_remove_editor_role', {'id': user.id}) }}" onclick="return confirm ('Voulez-vous vraiment retirer le role editeur a cette utilisateur ?')" class="btn btn-outline-danger">Supprimer</a>
+								{% endif %}
+							{% endif %}
 						</td>
 					</tr>
-				{% else %}
-					<p class="text-primary">Aucune categorie ajouté pour l'instant</p>
-
-
-				{% endfor %}
+				</td>
 			</tbody>
+		</tr>
+	{% else %}
+		<p class="text-primary">Aucune categorie ajouté pour l'instant</p>
 
 
-		</table>
-		<br>
-		<a href="{{ path('app_category_new') }}" class="btn btn-primary">Ajouter un utilisateur</a>
-		<a href="{{ path('app_logout') }}" class="btn btn-primary">Deconnexion</a>
-	</div>
-
-{% endblock %}
+	{% endfor %}
+</tbody></table><br><a href="{{ path('app_logout') }}" class="btn btn-outline-primary">Deconnexion</a></div>{% endblock %}
