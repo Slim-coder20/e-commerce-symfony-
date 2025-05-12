@@ -27,10 +27,17 @@
 						<td>{{ user.firstName }}</td>
 						<td>{{ user.lastName }}</td>
 						<td>
-							{% for role in user.roles %}
+                            {% if ('ROLE_ADMIN' in user.roles) %}
+                                <span class="badge bg-primary">Administrateur</span>
+                            {% elseif ('ROLE_EDITOR' in user.roles) %}
+                                <span class="badge bg-warning">Editeur</span>
+                            {% else %}
+                                <span class="badge bg-success">Client</span>
+                            {% endif %}
+							{# {% for role in user.roles %}
 								{{ role}}
 
-							{% endfor %}
+							{% endfor %} #}
 						</td>
 						<td>
 							{% if ('ROLE_ADMIN' in user.roles) == false  %}
@@ -40,6 +47,7 @@
 								{% else %}
 									<a href="{{ path('app_user_remove_editor_role', {'id': user.id}) }}" onclick="return confirm ('Voulez-vous vraiment retirer le role editeur a cette utilisateur ?')" class="btn btn-outline-danger">Supprimer</a>
 								{% endif %}
+                                <a onclick="return confirm ('Voulez-vous vraiment retirer cette utilisateur ?')" class="btn btn-outline-danger" href="{{ path('app_user_remove', {'id': user.id})}}">Supprimer</a>
 							{% endif %}
 						</td>
 					</tr>

@@ -60,4 +60,37 @@ use App\Repository\UserRepository;
          
       }
 
+        // cette route va nous permettre de supprimer un utillisateur depuis l'espace admin //
+
+        #[Route('/admin/user:{id}/remove', name: 'app_user_remove')]
+        public function userRemove (EntityManagerInterface $em, $id ,UserRepository $userRepository): Response
+      {
+
+        // ici on va supprimer l'utilisateur depuis son id avec le repository // 
+        $user = $userRepository->find($id);
+        
+        $em->remove($user);
+       
+        // on va flusher les changements dans la base de données
+        $em->flush();
+        
+        // on envoie un message flash pour infoler l'utilisateur que le rôle a été changé
+         $this->addFlash('success', "L'utilisateur a été supprimé.");
+
+        // on redirige vers la page de l'éditeur
+        return $this->redirectToRoute('app_user');
+         
+      }
+
+
+
+
+
+
+
+
+
+
+
+
 }
