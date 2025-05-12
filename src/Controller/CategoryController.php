@@ -3,6 +3,7 @@
 namespace App\Controller;
 use App\Form\CategoryForm;
 use App\Entity\Category;
+use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,13 +13,14 @@ use Symfony\Component\Routing\Attribute\Route;
 final class CategoryController extends AbstractController
 {
     #[Route('/category', name: 'app_category')]
-    public function index(): Response
-    {
+    public function index(CategoryRepository $categoryRepository): Response
+    {   
+        // On récupère toutes les catégories //
+        $categories = $categoryRepository->findAll();
         
-        
-        
-        return $this->render('category/index.html.twig', [
-            'controller_name' => 'CategoryController',
+        // On les envoie à la vue //
+        return $this->render('category/category.html.twig', [
+            'categories' => $categories,
         ]);
     }
     
@@ -51,7 +53,7 @@ final class CategoryController extends AbstractController
             $this->addFlash('success', 'La catégorie a été ajoutée avec succès !');
 
             // On redirige vers la page de la liste des catégories //
-            return $this->redirectToRoute('app_category_new');
+            return $this->redirectToRoute('app_category');
 
            
         }
@@ -78,6 +80,9 @@ final class CategoryController extends AbstractController
                 $category = $form->getData();
                
                 $em->flush();
+            
+                // On redirige vers la page de la liste des catégories //
+                return $this->redirectToRoute('app_category');
 
             
             }
@@ -85,6 +90,18 @@ final class CategoryController extends AbstractController
             'form' => $form->createView()
             ]);
     
+        }
+        
+        // Cette route va nous servir à supprimer une catégorie //
+        #[Route('/category/{id}/delete', name: 'app_category_delete')]
+        public function deleteCategory(Category $category, EntityManagerInterface $em): Response
+        {
+            // On supprime la catégorie //
+            $em->remove($category);
+            $em->flush();
+
+            // On redirige vers la page de la liste des catégories //
+            return $this->redirectToRoute('app_category');
         }
          
 
