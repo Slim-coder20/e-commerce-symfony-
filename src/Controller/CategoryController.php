@@ -80,6 +80,9 @@ final class CategoryController extends AbstractController
                 $category = $form->getData();
                
                 $em->flush();
+
+                // on affiche un message flash de succés //
+                $this->addFlash('success', 'La catégorie a été mise à jour avec succès !');
             
                 // On redirige vers la page de la liste des catégories //
                 return $this->redirectToRoute('app_category');
@@ -99,6 +102,9 @@ final class CategoryController extends AbstractController
             // On supprime la catégorie //
             $em->remove($category);
             $em->flush();
+
+            // On affiche un message flash de succés //
+            $this->addFlash('danger', 'La catégorie a été supprimée avec succès !');
 
             // On redirige vers la page de la liste des catégories //
             return $this->redirectToRoute('app_category');
