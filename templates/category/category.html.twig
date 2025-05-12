@@ -26,7 +26,7 @@
 							|
 							<a href="{{ path('app_category_update', {'id': category.id}) }}" class="btn btn-primary">Modifier</a>
 							|
-							<a href="{{ path('app_category_delete', {'id': category.id}) }}" class="btn btn-danger">Supprimer</a>
+							<a href="{{ path('app_category_delete', {'id': category.id}) }}" onclick="return confirm ('Voulez-vous vraiment supprimer cette catégorie ?')" class="btn btn-danger">Supprimer</a>
 						</td>
 					</tr>
 				{% else %}
@@ -40,6 +40,7 @@
 		</table>
 		<br>
 		<a href="{{ path('app_category_new') }}" class="btn btn-primary">Ajouter une categorie</a>
+		<a href="{{ path('app_logout') }}" class="btn btn-primary">Deconnexion</a>
 	</div>
 
 {% endblock %}
