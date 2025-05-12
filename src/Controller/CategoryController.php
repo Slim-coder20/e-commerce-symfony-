@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class CategoryController extends AbstractController
 {
-    #[Route('/category', name: 'app_category')]
+    #[Route('/admin/category', name: 'app_category')]
     public function index(CategoryRepository $categoryRepository): Response
     {   
         // On récupère toutes les catégories //
@@ -26,7 +26,7 @@ final class CategoryController extends AbstractController
     
     // Cette route va nous servir à ajouter une nouvelle catégorie // 
        
-    #[Route('/category/new', name: 'app_category_new')]
+    #[Route('/admin/category/new', name: 'app_category_new')]
        public function addCategory(EntityManagerInterface $em, Request $request): Response
        {   
    
@@ -65,7 +65,7 @@ final class CategoryController extends AbstractController
      
        // cette route va nous servir a mettre à jour une catégorie // 
        
-        #[Route('/category/{id}/update', name: 'app_category_update')]
+        #[Route('/admin/category/{id}/update', name: 'app_category_update')]
         public function updateCategory(Category $category, EntityManagerInterface $em, Request $request): Response
         {
             $form = $this->createForm(CategoryForm::class, $category);
@@ -96,7 +96,7 @@ final class CategoryController extends AbstractController
         }
         
         // Cette route va nous servir à supprimer une catégorie //
-        #[Route('/category/{id}/delete', name: 'app_category_delete')]
+        #[Route('/admin/category/{id}/delete', name: 'app_category_delete')]
         public function deleteCategory(Category $category, EntityManagerInterface $em): Response
         {
             // On supprime la catégorie //
