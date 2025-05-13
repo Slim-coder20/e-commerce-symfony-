@@ -24,8 +24,8 @@
                 <td>{{ product.description }}</td>
                 <td>{{ product.price }}</td>
                 <td>
-                    <a href="{{ path('app_product_show', {'id': product.id}) }}" class="btn btn-outline-prilmary">show</a>
-                    <a href="{{ path('app_product_edit', {'id': product.id}) }}" class="btn btn-outline-success">edit</a>
+                    <a href="{{ path('app_product_show', {'id': product.id}) }}" class="btn btn-outline-primary">détails</a>
+                    <a href="{{ path('app_product_edit', {'id': product.id}) }}" class="btn btn-outline-success">Modifer</a>
                 </td>
             </tr>
         {% else %}
