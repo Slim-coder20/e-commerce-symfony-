@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Subcategory index{% endblock %}
+{% block title %}Liste des sous catégories{% endblock %}
 
 {% block body %}
 <div class="container"><br><br>
@@ -9,8 +9,9 @@
     <table class="table">
         <thead>
             <tr>
-                <th class="text-primary">Id</th>
+                <th class="text-primary">Identifiant</th>
                 <th class="text-primary">Name</th>
+                <th class="text-primary">Catégorie</th>
                 <th class="text-primary">actions</th>
             </tr>
         </thead>
@@ -19,9 +20,10 @@
             <tr>
                 <td>{{ subcategory.id }}</td>
                 <td>{{ subcategory.name }}</td>
+                <td>{{ subcategory.category.name }}</td> 
                 <td>
-                    <a href="{{ path('app_subcategory_show', {'id': subcategory.id}) }}">show</a>
-                    <a href="{{ path('app_subcategory_edit', {'id': subcategory.id}) }}">edit</a>
+                    <a class="btn btn-outline-primary" href="{{ path('app_subcategory_show', {'id': subcategory.id}) }}">détails</a>
+                    <a class="btn btn-outline-danger" href="{{ path('app_subcategory_edit', {'id': subcategory.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -32,6 +34,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_subcategory_new') }}" class="btn btn-outline-primary">Create new</a>
+    <a href="{{ path('app_subcategory_new') }}" class="btn btn-outline-primary">Créé une sous catégorie</a>
 </div>
 {% endblock %}

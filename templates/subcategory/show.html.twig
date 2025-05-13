@@ -3,7 +3,9 @@
 {% block title %}Subcategory{% endblock %}
 
 {% block body %}
-    <h1>Subcategory</h1>
+<div class="container"><br><br>
+        <h1 class="text-center mt-4 text-primary">Sous catégorie</h1><br>
+    
 
     <table class="table">
         <tbody>
@@ -14,13 +16,19 @@
             <tr>
                 <th>Name</th>
                 <td>{{ subcategory.name }}</td>
+                <td>
+                    <a class="btn btn-outline-primary" href="{{ path('app_subcategory_show', {'id': subcategory.id}) }}">show</a>
+                    <a class="btn btn-outline-danger" href="{{ path('app_subcategory_edit', {'id': subcategory.id}) }}">edit</a>
+                
+                </td>
+                
             </tr>
+           
         </tbody>
     </table>
 
-    <a href="{{ path('app_subcategory_index') }}">back to list</a>
-
-    <a href="{{ path('app_subcategory_edit', {'id': subcategory.id}) }}">edit</a>
+ 
 
     {{ include('subcategory/_delete_form.html.twig') }}
+</div>
 {% endblock %}
