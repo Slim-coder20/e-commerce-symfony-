@@ -1,0 +1,9 @@
+<div class="conatiner">
+{{ form_start(form) }}
+<label for="" class="text-primary mt-2">Nom de la soous catégorie</label>
+    {{ form_widget(form.name,{attr:{'class': 'form form-control mt-2'}}) }}
+<label for="" class="text-primary mt-2">Nom de la catégoriee</label>
+    {{ form_widget(form.category,{attr:{'class': 'form form-control mt-2'}}) }}
+<button class="btn btn-outline-primary mt-2">{{ button_label|default('Sauvegrader') }}</button>
+{{ form_end(form) }}
+</div>
