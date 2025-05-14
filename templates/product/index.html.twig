@@ -1,49 +1,60 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Product index{% endblock %}
+{% block title %}Product index
+{% endblock %}
 
 {% block body %}
-<div class="container"><br><br>
-    <h1 class="text-primary text-center mt-3">liste des Produits</h1>
-    {% include "layouts/_flash_message.html.twig" %}
+	<div class="container"><br><br>
+		<h1 class="text-primary text-center mt-3">liste des Produits</h1>
+		{% include "layouts/_flash_message.html.twig" %}
 
-    <table class="table">
-        <thead><br><br>
-            <tr>
-                <th class="text-primary">Id</th>
-                <th class="text-primary">Nom</th>
-                <th class="text-primary">Description</th>
-                <th class="text-primary">Prix</th>
-                <th class="text-primary">Image</th>
-                <th class="text-primary">Quantité</th>
-                <th class="text-primary">actions</th>
-                
-            </tr>
-        </thead>
-        <tbody>
-        {% for product in products %}
-            <tr>
-                <td>{{ product.id }}</td>
-                <td>{{ product.name }}</td>
-                <td>{{ product.description }}</td>
-                <td>{{ product.price }}</td>
-                <td>{{ product.image }}</td>
-                <td>{{ product.stock }}</td>
+		<table class="table">
+			<thead><br><br>
+				<tr>
+					<th class="text-primary">Id</th>
+					<th class="text-primary">Nom</th>
+					<th class="text-primary">Description</th>
+					<th class="text-primary">Prix</th>
+					<th class="text-primary">Image</th>
+					<th class="text-primary">Quantité</th>
+					<th class="text-primary">actions</th>
 
-                <td>
-                    <a href="{{ path('app_product_show', {'id': product.id}) }}" class="btn btn-outline-primary">détails</a>
-                    <a href="{{ path('app_product_edit', {'id': product.id}) }}" class="btn btn-outline-success">Modifer</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+				</tr>
+			</thead>
+			<tbody>
+				{% for product in products %}
+					<tr>
+						<td>{{ product.id }}</td>
+						<td>{{ product.name }}</td>
+						<td>{{ product.description }}</td>
+						<td>{{ product.price }}</td>
+						<td>{{ product.image }}</td>
+						<td>
+							{% if  product.stock > 0  %}
+								{{ product.stock }}
+							{% else %}
+								<span class="text-danger">Stock epuisé</span>
 
-    <a href="{{ path('app_product_new') }}" class="btn btn-outline-primary">Créer nouveau produit</a>
+							{% endif %}
 
-</div>
+
+						</td>
+
+						<td>
+							<a href="{{ path('app_product_show', {'id': product.id}) }}" class="btn btn-outline-primary">détails</a>
+							<a href="{{ path('app_product_edit', {'id': product.id}) }}" class="btn btn-outline-success">Modifer</a>
+							<a href="#" class="btn btn-outline-info">Ajouter du stock</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="5">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a href="{{ path('app_product_new') }}" class="btn btn-outline-primary">Créer nouveau produit</a>
+
+	</div>
 {% endblock %}

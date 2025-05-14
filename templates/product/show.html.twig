@@ -25,6 +25,16 @@
                 <th class="text-primary">Image</th>
                 <td>{{ product.image }}</td>
             </tr>
+            </tr>
+                <th class="text-primary">Quantité</th>
+                <td>
+                    {% if  product.stock > 0  %}
+                        {{ product.stock }}
+                    {% else %}
+                        <span class="text-danger">Stock épuisé</span>
+                    {% endif %}
+                </td>
+            </tr>
         </tbody>
     </table>
 
