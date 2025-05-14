@@ -34,6 +34,7 @@ class ProductForm extends AbstractType
                             'image/jpg',
                         ],
                         'mimeTypesMessage' => 'Votre image de produit doit être au format JPG, PNG ou GIF',
+                        'maxSizeMessage' => 'La taille de votre image de produit ne doit pas dépasser 1 Mo',
                     ])
                 ]
             ])
