@@ -37,9 +37,33 @@ final class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // On recupère le fichier image // 
             $imageFile = $form->get('image')->getData();
+
+
+            // On vérifie si un fichier a été télécharger // 
             if($imageFile){
+                // On génère un nom de fichier unique //
                 $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // On utilise le slugger pour créer un nom de fichier sécurisé //
+                $safeFilename = $slugger->slug($originalFilename);
+                // On génère un nom de fichier unique en ajoutant un identifiant unique //
+                // On utilise la méthode guessExtension() pour obtenir l'extension du fichier //
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+
+                try {
+                    // On déplace le fichier dans le répertoire de destination //
+                    // On utilise la méthode move() pour déplacer le fichier dans le répertoire de destination //
+                    // On utilise la méthode getParameter() pour obtenir le chemin du répertoire de destination //
+                    $imageFile->move(
+                        $this->getParameter('images_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $exeption) {
+                    // ici vous pouvez gérer l'exception si le fichier ne peut pas être déplacé
+                }
+                $product->setImage($newFilename);
+
                 
             }
             $entityManager->persist($product);
