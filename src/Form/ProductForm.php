@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 
 class ProductForm extends AbstractType
 {
@@ -18,12 +19,24 @@ class ProductForm extends AbstractType
             ->add('name')
             ->add('description')
             ->add('price')
-            ->add('image', FileType::class,[
-                'label' => ' image du produit',
-                'format' => 'jpg, png, jpeg',
+            ->add('image', FileType::class, [
+                'label' => 'Image du produit',
+                'help' => 'Formats acceptés : JPG, PNG, GIF, JPEG',
                 'mapped' => false,
                 'required' => false,
-                ])
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1M',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                            'image/gif',
+                            'image/jpg',
+                        ],
+                        'mimeTypesMessage' => 'Votre image de produit doit être au format JPG, PNG ou GIF',
+                    ])
+                ]
+            ])
             ->add('subCategories', EntityType::class, [
                 'class' => Subcategory::class,
                 'choice_label' => 'name',
