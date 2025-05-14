@@ -38,6 +38,7 @@ class ProductForm extends AbstractType
                     ])
                 ]
             ])
+            ->add('stock')
             ->add('subCategories', EntityType::class, [
                 'class' => Subcategory::class,
                 'choice_label' => 'name',

@@ -15,6 +15,7 @@
                 <th class="text-primary">Description</th>
                 <th class="text-primary">Prix</th>
                 <th class="text-primary">Image</th>
+                <th class="text-primary">Quantité</th>
                 <th class="text-primary">actions</th>
                 
             </tr>
@@ -27,6 +28,8 @@
                 <td>{{ product.description }}</td>
                 <td>{{ product.price }}</td>
                 <td>{{ product.image }}</td>
+                <td>{{ product.stock }}</td>
+
                 <td>
                     <a href="{{ path('app_product_show', {'id': product.id}) }}" class="btn btn-outline-primary">détails</a>
                     <a href="{{ path('app_product_edit', {'id': product.id}) }}" class="btn btn-outline-success">Modifer</a>
