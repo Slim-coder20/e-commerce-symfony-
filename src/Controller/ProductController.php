@@ -14,7 +14,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 
 
-#[Route('/product')]
+#[Route('editor/product')]
 final class ProductController extends AbstractController
 
 {   
