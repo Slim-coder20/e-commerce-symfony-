@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-
+use App\Entity\AddProductHistory;
 use App\Entity\Product;
 use App\Form\ProductForm;
 use App\Repository\ProductRepository;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
-
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 
 #[Route('editor/product')]
@@ -67,6 +67,20 @@ final class ProductController extends AbstractController
                 
             }
             $entityManager->persist($product);
+            $entityManager->flush();
+
+            // On va instancié la classe AddProductHistory pour ajouter du stock au produit //
+
+            $stockHistory = new AddProductHistory();
+            //
+            $stockHistory->setProduct($product);
+            // on recupère la quantité de produit //
+            $stockHistory->setQte($product->getStock());
+            // On recupère la date actuelle //
+            $stockHistory->setCreatedAt(new \DateTimeImmutable());
+            // On persiste le produit en BDD // 
+            $entityManager->persist($stockHistory);
+            // On enregistre le produit en BDD //
             $entityManager->flush();
 
             $this->addFlash('success', 'Votre produit a  été ajouter !');
