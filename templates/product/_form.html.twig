@@ -1,0 +1,15 @@
+<div class="conatiner">
+	{{ form_start(form) }}
+	<label for="" class="text-primary mt-2">Nom du produit</label>
+	{{ form_widget(form.name,{attr:{'class': 'form form-control mt-2'}}) }}
+	<label for="" class="text-primary mt-2">Description</label>
+	{{ form_widget(form.description,{attr:{'class': 'form form-control mt-2'}}) }}
+	<label for="" class="text-primary mt-2">Prix</label>
+	{{ form_widget(form.price,{attr:{'class': 'form form-control mt-2'}}) }}
+	<label for="" class="text-primary mt-2">Sous catégorie</label>
+	{{ form_widget(form.subCategories,{attr:{'class': 'form form-control mt-2'}}) }}
+	<label for="" class="text-primary mt-2">Image</label>
+	{{ form_widget(form.image,{attr:{'class': 'form form-control mt-2'}}) }}
+	<button class="btn btn-outline-success mt-4">{{ button_label|default('Sauvegarder') }}</button>
+	{{ form_end(form) }}
+</div>
