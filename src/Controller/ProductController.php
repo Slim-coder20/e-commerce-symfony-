@@ -111,7 +111,7 @@ final class ProductController extends AbstractController
         ]);
     }
    
-    // Cette méthode permet de modifier un produit en particulier // Elle est accessible via la route '/product/{id}/edit' et utilise les méthodes GET et POST //
+    // Cette méthode permet de mettre a jour un produit en particulier // Elle est accessible via la route '/product/{id}/edit' et utilise les méthodes GET et POST //
 
     #[Route('/{id}/edit', name: 'app_product_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Product $product, EntityManagerInterface $entityManager): Response
