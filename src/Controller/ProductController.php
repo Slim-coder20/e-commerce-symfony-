@@ -5,6 +5,7 @@ use App\Entity\AddProductHistory;
 use App\Entity\Product;
 use App\Form\ProductForm;
 use App\Form\AddProductHistoryForm;
+use App\Repository\AddProductHistoryRepository;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -201,20 +202,32 @@ final class ProductController extends AbstractController
             // on affiche un message d'erreur //
         }   
             
-         
-
-
-
-
-
-        
-        
         }
 
         return $this->render('product/addStock.html.twig', [
             'form' => $form->createView(),
             'product' => $product,
         ]);
+    
+    
+    
+    
+    }
+    // On créé une méthode qui permet d'afficher l'historique de stock d'un produitet qui utilise la méthode GET //
+    #[Route('/add/product/{id}/stock/history', name: 'app_product_stock_add_history', methods: ['GET'])]
+    public function productAddHistory($id, ProductRepository $productRepository,AddProductHistoryRepository $addProductHistory):Response
+    {
+        
+      $product = $productRepository->find($id);
+        // on récupère le produit à partir de son id //
+        $productAddedHistory = $addProductHistory->findBy(['product' => $product], ['id' => 'DESC']);
+        // on récupère l'historique de stock du produit //
+        return $this->render('product/addedStockHistory.html.twig', [
+            'productsAdded' => $productAddedHistory,
+            
+        ]);
+       
+        
     
     
     
