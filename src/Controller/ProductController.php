@@ -110,6 +110,7 @@ final class ProductController extends AbstractController
             'product' => $product,
         ]);
     }
+   
     // Cette méthode permet de modifier un produit en particulier // Elle est accessible via la route '/product/{id}/edit' et utilise les méthodes GET et POST //
 
     #[Route('/{id}/edit', name: 'app_product_edit', methods: ['GET', 'POST'])]
