@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\AddProductHistory;
 use App\Entity\Product;
 use App\Form\ProductForm;
+use App\Form\AddProductHistoryForm;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -147,4 +148,91 @@ final class ProductController extends AbstractController
 
         return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    // Cette méthode permet d'ajouter du stock à un produit en particulier // Elle est accessible via la route '/product/{id}/stock' et utilise les méthodes GET et POST //
+
+    #[Route('/add/product/{id}/stock', name: 'app_product_stock_add', methods: ['POST', 'GET'])]
+    public function addStock($id, EntityManagerInterface $em, Request $request, ProductRepository $productRepository):Response 
+    {   
+
+        $addStock = new AddProductHistory(); 
+        // on instancie la classe AddProductHistory //
+       
+        $form = $this->createForm(AddProductHistoryForm::class, $addStock);
+       // on créé le formulaire //  
+        
+       $form->handleRequest($request);
+        // on gère la requête //
+
+        // On récupère le produit auquel on veut ajouter du stock a partir de son id on utilisant le repository // 
+        $product = $productRepository->find($id);
+
+        // on soumet le formulaire et on vérifie si il est valide //
+        if($form->isSubmitted() && $form->isValid())
+        {
+            if($addStock->getQte() > 0)
+            {
+             $newQte = $product ->getStock() + $addStock->getQte();
+            // on récupère la quantité de produit //
+            // on ajoute la quantité de produit au stock //
+            $product->setStock($newQte);
+
+            $addStock->setCreatedAt(new \DateTimeImmutable());
+            // on récupère la date actuelle //
+            
+            $addStock->setProduct($product);
+            // on associe le produit au stock //
+            
+            // on met à jour le stock du produit //
+            $em->persist($addStock);
+            // on persiste le nouveau stock  en BDD //
+            $em->flush();
+            // on enregistre le nouveau stock  en BDD //
+             $this->addFlash('success', 'Votre produit a été modifié !');
+            // on affiche un message de succès //
+            return $this->redirectToRoute('app_product_index');
+
+           
+            
+        }
+        else{
+            $this->addFlash('danger', 'La quantité de produit doit être supérieur à 0 !');
+            return $this->redirectToRoute('app_product_stock_add', ['id' => $product->getId()]);
+            // on affiche un message d'erreur //
+        }   
+            
+         
+
+
+
+
+
+        
+        
+        }
+
+        return $this->render('product/addStock.html.twig', [
+            'form' => $form->createView(),
+            'product' => $product,
+        ]);
+    
+    
+    
+    
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -43,7 +43,7 @@
 						<td>
 							<a href="{{ path('app_product_show', {'id': product.id}) }}" class="btn btn-outline-primary">détails</a>
 							<a href="{{ path('app_product_edit', {'id': product.id}) }}" class="btn btn-outline-success">Modifer</a>
-							<a href="#" class="btn btn-outline-info">Ajouter du stock</a>
+							<a href="{{ path('app_product_stock_add', {'id': product.id})}}" class="btn btn-outline-info">Ajouter du stock</a>
 						</td>
 					</tr>
 				{% else %}
@@ -55,6 +55,7 @@
 		</table>
 
 		<a href="{{ path('app_product_new') }}" class="btn btn-outline-primary">Créer nouveau produit</a>
+		<a href="{{ path('app_logout') }}" class="btn btn-outline-primary">Deconnexion</a>
 
 	</div>
 {% endblock %}
