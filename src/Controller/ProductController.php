@@ -72,14 +72,19 @@ final class ProductController extends AbstractController
             // On va instancié la classe AddProductHistory pour ajouter du stock au produit //
 
             $stockHistory = new AddProductHistory();
-            //
-            $stockHistory->setProduct($product);
-            // on recupère la quantité de produit //
+           
+            // On récupère le stock du produit //
             $stockHistory->setQte($product->getStock());
+
+            // on recupère la quantité de produit //
+            $stockHistory->setProduct($product);
+            
             // On recupère la date actuelle //
             $stockHistory->setCreatedAt(new \DateTimeImmutable());
+            
             // On persiste le produit en BDD // 
             $entityManager->persist($stockHistory);
+            
             // On enregistre le produit en BDD //
             $entityManager->flush();
 

@@ -28,7 +28,7 @@
 						<td>{{ product.name }}</td>
 						<td>{{ product.description }}</td>
 						<td>{{ product.price }}</td>
-						<td>{{ product.image }}</td>
+						<td>{{ product.image|slice(0,50) }}...</td>
 						<td>
 							{% if  product.stock > 0  %}
 								{{ product.stock }}
