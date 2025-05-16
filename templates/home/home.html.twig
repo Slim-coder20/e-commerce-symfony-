@@ -5,18 +5,20 @@
 
 {% block body %}
 	<div class="container">
-        <h1 class="text-primary text-center mt-4">Bienvenue sur notre site de My Shopping</h1>
-		<h2 class="text-primary mt-4">Nos Produits</h2><br><br>
+		<h2 class="text-success mt-5">Nos Produits</h2><br><br>
 		<div class="row">
-			{% for product in products %}   
-				<div class="col-md-4 mb-4">  
+			{% for product in products %}
+				<div class="col-md-4 mb-4">
 					<div class="card">
 						<img src="{{asset('uploads/images/'~ product.image)}}" class="card-img-top img-fluid object-fit-cover" alt="" style="height: 250px; object-fit: cover;">
 						<div class="card-body">
-							<a  href="{{path('app_home_product_show', {'id':product.id})}}"><h5 class="card-title" style="text-decoration: none;"></h5>{{product.name}}</a>
+							<a href="{{path('app_home_product_show', {'id':product.id})}}">
+								<h5 class="card-title" style="text-decoration: none;"></h5>
+								{{product.name}}</a>
 							<p class="card-text">{{product.description|slice(0,50)}}</p>
-							<p class="card-text">{{product.price}} €</p>
-							<a href="#" class="btn btn-outline-primary">Ajouter au panier</a>
+							<p class="card-text">{{product.price}}
+								EUR</p>
+							<a href="#" class="btn btn-outline-success">Add to card</a>
 						</div>
 					</div>
 				</div>
