@@ -18,7 +18,7 @@
 							<p class="card-text">{{product.description|slice(0,50)}}</p>
 							<p class="card-text">{{product.price}}
 								EUR</p>
-							<a href="#" class="btn btn-outline-success">Add to card</a>
+							<a href="{{path('app_cart_add', {'id':product.id})}}" class="btn btn-outline-success">Add to card</a>
 						</div>
 					</div>
 				</div>
