@@ -146,6 +146,8 @@ final class ProductController extends AbstractController
                 } catch (FileException $exeption) {
                     // ici vous pouvez gérer l'exception si le fichier ne peut pas être déplacé
                 }
+                // On met a jour la propriété image du produit //
+                // On utilise la méthode setImage() pour mettre à jour la propriété image du produit //
                 $product->setImage($newFilename);
 
                 
