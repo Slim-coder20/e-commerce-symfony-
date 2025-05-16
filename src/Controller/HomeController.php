@@ -25,15 +25,12 @@ final class HomeController extends AbstractController
             6
         );
         
-        
-        
-        
-        
         return $this->render('home/home.html.twig', [
-            'products' => $product
-,            'categories' => $categoryRepository->findAll(),
+            'products' => $product,            
+            'categories' => $categoryRepository->findAll(),
         ]);
     }
+    
     
     // cette route va nous sevire a afficher les détails d'un produit selectionné depuis la page d'accueil // 
     #[Route('/product/{id}/show', name: 'app_home_product_show', methods: ['GET'])]
