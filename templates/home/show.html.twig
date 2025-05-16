@@ -7,7 +7,7 @@
 {% block body %}
 	<div class="container">
 
-		<h1 class="text-primary mt-4">{{product.name}}</h1>
+		<h1 class="text-success mt-4">{{product.name}}</h1>
 		<div class="card mb-12" style="margin-top: 70px;">
 			<div class="row g-0">
 				<div class="col-md-3">
@@ -29,7 +29,7 @@
 		</div>
 	</div>
 
-	<h2 class="text-primary">Dernier produits ajouté</h2>
+	<h2 class="text-success">Dernier produits ajouté</h2>
 	<div class="row">
 		{% for product in products %}
 			<div class="col-md-4 mb-4">
@@ -40,14 +40,17 @@
 							<h5 class="card-title" style="text-decoration: none;"></h5>
 							{{product.name}}</a>
 						<p class="card-text">{{product.description|slice(0,50)}}</p>
-						<p class="card-text">{{product.price}} €</p>
-						<a href="#" class="btn btn-outline-primary">Ajouter au panier</a>
+						<p class="card-text">{{product.price}} EUR</p>
+						<a href="#" class="btn btn-outline-success">Add card</a>
 					</div>
 				</div>
 			</div>
 
 		{% endfor %}
+		
 
 
 	</div>
-</div>{% endblock %}
+	<a href="{{path('app_home')}}" class="btn btn-outline-primary d-block mx-auto">Retour à l'accueil</a>
+</div>
+{% endblock %}
