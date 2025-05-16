@@ -1,20 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}My Shopping{% endblock %}
+{% block title %}My Shopping
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<div class="container">
+        <h1 class="text-primary text-center mt-4">Bienvenue sur notre site de My Shopping</h1>
+		<h2 class="text-primary mt-4">Nos Produits</h2><br><br>
+		<div class="row">
+			{% for product in products %}   
+				<div class="col-md-4 mb-4">  
+					<div class="card">
+						<img src="{{asset('uploads/images/'~ product.image)}}" class="card-img-top img-fluid object-fit-cover" alt="" style="height: 250px; object-fit: cover;">
+						<div class="card-body">
+							<a  href="{{path('app_home_product_show', {'id':product.id})}}"><h5 class="card-title" style="text-decoration: none;"></h5>{{product.name}}</a>
+							<p class="card-text">{{product.description|slice(0,50)}}</p>
+							<a href="#" class="btn btn-outline-primary">Ajouter au panier</a>
+						</div>
+					</div>
+				</div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+			{% endfor %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Users/abida/Desktop/Projets_symfony/E-commerce projet symfony /e-commerce/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>/Users/abida/Desktop/Projets_symfony/E-commerce projet symfony /e-commerce/templates/home/index.html.twig</code></li>
-    </ul>
-</div>
+
+		</div>
+
+
+	</div>
+
+
 {% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Shopping
+{% endblock %}
+
+
+{% block body %}
+	<div class="container">
+
+		<h1 class="text-primary mt-4">{{product.name}}</h1>
+		<div class="card mb-12" style="margin-top: 70px;">
+			<div class="row g-0">
+				<div class="col-md-3">
+					<img src="{{asset('uploads/images/'~ product.image)}}" class=" card-img-top img-fluid object-fit-cover " alt="image produit">
+				</div>
+				<div class="col-md-8">
+					<div class="card-body">
+						<h5 class="card-title text-primary mt-4">{{product.name}}</h5>
+						<p class="card-text">{{product.description}}</p>
+						<a href="" class="btn btn-outline-primary">Ajouter au panier</a>
+						<p class="card-text">
+							<small class="text-success">Prix:
+								{{product.price}}
+								€</small>
+						</p>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<h2 class="text-primary">Dernier produits ajouté</h2>
+	<div class="row">
+		{% for product in products %}
+			<div class="col-md-4 mb-4">
+				<div class="card">
+					<img src="{{asset('uploads/images/'~ product.image)}}" class="card-img-top img-fluid object-fit-cover" alt="" style="height: 250px; object-fit: cover;">
+					<div class="card-body">
+						<a href="{{path('app_home_product_show', {'id':product.id})}}">
+							<h5 class="card-title" style="text-decoration: none;"></h5>
+							{{product.name}}</a>
+						<p class="card-text">{{product.description|slice(0,50)}}</p>
+						<a href="#" class="btn btn-outline-primary">Ajouter au panier</a>
+					</div>
+				</div>
+			</div>
+
+		{% endfor %}
+
+
+	</div>
+</div>{% endblock %}
