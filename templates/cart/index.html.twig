@@ -31,7 +31,7 @@
 						</td>
 					</tr>
 				{% else %}
-					<p>Aucun article dans le pannier</p>
+					<p class="text-primary">Aucun article dans le pannier</p>
 				{% endfor %}
 			</tbody>
 			<tfoot>
@@ -50,7 +50,7 @@
 			<div class="md-4">
 				<a href="{{path('app_home')}}" class="btn btn-outline-primary mt-3">Retour à l'accueil</a>
 				<a href="#" class="btn btn-outline-success mt-3">Valider le pannier</a>
-				<a href="#" class="btn btn-outline-danger mt-3">Vider le pannier</a>
+				<a href="{{path('app_cart_clear')}}" class="btn btn-outline-danger mt-3">Vider le pannier</a>
 			</div>
 		</div>
 
