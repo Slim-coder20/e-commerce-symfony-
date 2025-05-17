@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ville accueil
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1 class="text-primary text-center">Nom de Ville</h1>
+
+		<table class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<th class="text-primary">Id</th>
+					<th class="text-primary">Ville</th>
+					<th class="text-primary">Frais de port</th>
+					<th class="text-primary">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for city in cities %}
+					<tr>
+						<td>{{ city.id }}</td>
+						<td>{{ city.city }}</td>
+						<td>{{ city.shippingcost }}</td>
+						<td>
+							<a href="{{ path('app_city_show', {'id': city.id}) }}" class="btn btn-outline-primary">détails</a>
+							<a href="{{ path('app_city_edit', {'id': city.id}) }}" class="btn btn-outline-success">Modifer</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="4">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a href="{{ path('app_city_new') }}" class="btn btn-outline-primary">Créé nouvelle ville</a>
+		<a href="{{ path('app_cart') }}" class="btn btn-outline-primary">Retour au Pannier</a>
+
+	</div>
+{% endblock %}

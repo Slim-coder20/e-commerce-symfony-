@@ -1,0 +1,9 @@
+<div class="container">
+	{{ form_start(form) }}
+	<label for="" class="text-primary mt-2">Nom de la ville</label>
+	{{ form_widget(form.city,{attr:{'class': 'form form-control mt-2'}}) }}
+	<label for="" class="text-primary mt-2">Frais de port</label>
+	{{ form_widget(form.shippingcost,{attr:{'class': 'form form-control mt-2'}}) }}
+	<button class="btn btn-outline-primary mt-3">{{ button_label|default('Sauvegarder') }}</button>
+	{{ form_end(form) }}
+</div>

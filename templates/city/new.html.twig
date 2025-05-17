@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New City
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1 class="text-primary mt-4">Créé nouvelle ville</h1><br><br><br>
+
+		{{ include('city/_form.html.twig') }}
+
+		<a href="{{ path('app_city_index') }}" class="btn btn-outline-primary mt-3">Retour à la liste </a>
+	</div>
+{% endblock %}
