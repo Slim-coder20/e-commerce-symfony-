@@ -17,7 +17,7 @@ final class CartController extends AbstractController
    
     // Cette méthode permet de créé le panier // 
 
-    #[Route('/cart', name: 'app_cart', methods: ['POST', 'GET'])]
+    #[Route('/cart', name: 'app_cart', methods: [ 'GET'])]
     public function index(SessionInterface $session ): Response
     {
         // On récupère le panier // 
