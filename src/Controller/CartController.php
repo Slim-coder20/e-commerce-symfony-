@@ -73,6 +73,30 @@ final class CartController extends AbstractController
     
     
     }
+    // Cette méthode permet de supprimer un produit du panier //
+    #[Route('/cart/remove/{id}', name: 'app_cart_remove', methods: ['GET'])]
+    public function removeToCart(int $id, SessionInterface $session): Response
+    {
+        // On récupère le panier //
+        $cart = $session->get('cart', []);
+        
+        // On vérifie si le produit est dans le panier //
+        if (!empty($cart[$id])) {
+            // Si le produit est dans le panier, on décrémente la quantité //
+            $cart[$id]--;
+            
+            // Si la quantité est à 0, on supprime le produit du panier //
+            if ($cart[$id] === 0) {
+                unset($cart[$id]);
+            }
+        }
+        
+        // On met à jour le panier //
+        $session->set('cart', $cart);
+        
+        // On redirige vers la page du panier //
+        return $this->redirectToRoute('app_cart');
+    }   
 
 
 
