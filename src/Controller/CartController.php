@@ -98,6 +98,7 @@ final class CartController extends AbstractController
         return $this->redirectToRoute('app_cart');
     }   
     
+    
     // Cette méthode permet de vider le panier // 
     #[Route('/cart/clear', name: 'app_cart_clear', methods: ['GET'])]
     public function clearCart(SessionInterface $session): Response
@@ -108,6 +109,8 @@ final class CartController extends AbstractController
         // On redirige vers la page du panier //
         return $this->redirectToRoute('app_cart');
     }
+
+    
 
 
 
