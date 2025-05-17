@@ -17,7 +17,7 @@ class City
     private ?string $city = null;
 
     #[ORM\Column]
-    private ?float $shippingcost = null;
+    private ?float $shippingCost = null;
 
     public function getId(): ?int
     {
@@ -36,14 +36,14 @@ class City
         return $this;
     }
 
-    public function getShippingcost(): ?float
+    public function getShippingCost(): ?float
     {
-        return $this->shippingcost;
+        return $this->shippingCost;
     }
 
-    public function setShippingcost(float $shippingcost): static
+    public function setShippingCost(float $shippingCost): static
     {
-        $this->shippingcost = $shippingcost;
+        $this->shippingCost = $shippingCost;
 
         return $this;
     }
