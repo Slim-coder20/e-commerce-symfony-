@@ -11,17 +11,20 @@
 			{{ form_errors(registrationForm) }}
 
 			{{ form_start(registrationForm) }}
+			<label for="" class="text-primary ">Email</label>
 			{{ form_widget(registrationForm.email, {'attr': {'class': 'form form-control'}}) }}
 			<br>
+			<label for="" class="text-primary ">Prénom</label>
 			{{ form_widget(registrationForm.firstName, {'attr': {'class': 'form form-control'}}) }}
 			<br>
+			<label for="" class="text-primary ">Nom</label>
 			{{ form_widget(registrationForm.lastName, {'attr': {'class': 'form form-control'}}) }}
 			<br>
+			<label for="" class="text-primary ">Mot de passe</label>
 			{{ form_widget(registrationForm.plainPassword,{'attr': {'class': 'form form-control'}})}}
 			<br>
 			{{ form_row(registrationForm.agreeTerms) }}
 			<br>
-
 			<button type="submit" class="btn btn-block btn-primary">Valider</button>
 			{{ form_end(registrationForm) }}
 		</div>
