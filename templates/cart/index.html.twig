@@ -1,12 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CartController!
+{% block title %}Mon Panier
 {% endblock %}
+
 
 {% block body %}
 	<div class="container">
 		<h2 class="text-success mt-5">Mon Panier</h2><br><br>
-		
-    </div>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th class="text-primary">Produit</th>
+					<th class="text-primary">Prix</th>
+					<th class="text-primary">Quantité</th>
+					<th class="text-primary">Total prix</th>
+					<th class="text-primary">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for item in items %}
+					<tr>
+						<td>{{ item.product.name }}</td>
+						<td>{{ item.product.price|number_format(2, ',', ' ') }}
+							€</td>
+						<td>{{ item.quantity }}</td>
+						<td>{{ (item.product.price * item.quantity)|number_format(2, ',', ' ') }}
+							€</td>
+						<td>
+							<a href="#" class="btn btn-outline-danger text-decoration-none">Retirer le pannier</a>
+						</td>
+					</tr>
+				{% else %}
+					<p>Aucun article dans le pannier</p>
+				{% endfor %}
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="3" class="text-primary">
+						<strong>Total :</strong>
+					</td>
+					<td colspan="2">{{ total|number_format(2, ',', ' ') }}
+						€</td>
+				</tr>
+			</tfoot>
+
+
+		</table>
+		<div class="row">
+			<div class="md-4">
+				<a href="{{path('app_home')}}" class="btn btn-outline-primary mt-3">Retour à l'accueil</a>
+				<a href="#" class="btn btn-outline-success mt-3">Valider le pannier</a>
+				<a href="#" class="btn btn-outline-danger mt-3">Vider le pannier</a>
+			</div>
+		</div>
+
+	</div>
 
 {% endblock %}

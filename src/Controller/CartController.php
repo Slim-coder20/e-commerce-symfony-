@@ -54,8 +54,10 @@ final class CartController extends AbstractController
     #[Route('/cart/add/{id}', name: 'app_cart_add', methods: ['GET'])]
     public function addToCart(int $id, SessionInterface $session):Response
     {
+    // On récupère le panier //
      $cart = $session->get('cart', []);
-    // On vérifie si le produit est déjà dans le panier //
+    
+     // On vérifie si le produit est déjà dans le panier //
     if (!empty($cart[$id])) {
         // Si le produit est déjà dans le panier, on incrémente la quantité //
         $cart[$id]++;
@@ -65,8 +67,8 @@ final class CartController extends AbstractController
     
     // On met à jour le panier //
     $session->set('cart', $cart);
-    // On redirige vers la page du panier //
     
+    // On redirige vers la page du panier //
     return $this->redirectToRoute('app_cart');
     
     
