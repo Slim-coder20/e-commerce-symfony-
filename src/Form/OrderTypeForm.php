@@ -3,24 +3,32 @@
 namespace App\Form;
 
 use App\Entity\City;
+use App\Entity\Order;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CityForm extends AbstractType
+class OrderTypeForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('city')
-            ->add('shippingCost')
+            ->add('firstName')
+            ->add('lastName')
+            ->add('phone')
+            ->add('address')
+            ->add('city', EntityType::class, [
+                'class' => City::class,
+                'choice_label' => 'city',
+            ])
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => City::class,
+            'data_class' => Order::class,
         ]);
     }
 }

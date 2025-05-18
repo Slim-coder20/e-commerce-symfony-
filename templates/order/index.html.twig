@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-8">
+				<h2 class="text-success mb-4">Saisir ma commande</h2>
+				{{ form_start (form)}}
+				<label for="" class="text-primary mt-2">Nom</label>
+				{{ form_widget(form.firstName,{attr:{'class': 'form form-control mt-2'}}) }}
+				<label for="" class="text-primary mt-2">Prénom</label>
+				{{ form_widget(form.lastName,{attr:{'class': 'form form-control mt-2'}}) }}
+				<label for="" class="text-primary mt-2">Téléphone</label>
+				{{ form_widget(form.phone,{attr:{'class': 'form form-control mt-2'}}) }}
+				<label for="" class="text-primary mt-2">Adresse</label>
+				{{ form_widget(form.address,{attr:{'class': 'form form-control mt-2'}}) }}
+				<label for="" class="text-primary mt-2">Ville</label>
+				{{ form_widget(form.city,{attr:{'class': 'form form-control mt-2'}}) }}
+				<input type="submit" class="btn btn-outline-success mt-3" value="Continuer">
+
+				{{ form_end (form) }}
+
+
+			</div>
+			<div class="col-4"></div>
+
+
+		</div>
+
+
+	</div>
+
+
+{% endblock %}
