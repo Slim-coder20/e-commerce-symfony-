@@ -19,7 +19,7 @@
 				{{ form_widget(form.address,{attr:{'class': 'form form-control mt-2'}}) }}
 				<label for="" class="text-primary mt-2">Ville</label>
 				{{ form_widget(form.city,{attr:{'class': 'form form-control mt-2'}}) }}
-				<input type="submit" class="btn btn-outline-success mt-3" value="Continuer">
+				<input type="submit" class="btn btn-outline-success mt-3" value="Payer">
 
 				{{ form_end (form) }}
 
@@ -31,8 +31,9 @@
 						<h5 class="card-title text-primary">Montant à payer :
 							{{total}}
 							Eur</h5>
-                        <h5 class="text-primary">Frais de livraison : </h5>
-						<a href="#" class="btn btn-outline-success mt-2">Payer</a>
+						<h5 class="text-primary">Frais de livraison :
+						</h5>
+
 					</div>
 				</div>
 
