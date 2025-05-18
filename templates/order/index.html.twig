@@ -6,7 +6,7 @@
 {% block body %}
 	<div class="container">
 		<div class="row">
-			<div class="col-8">
+			<div class="col-6 mt-2">
 				<h2 class="text-success mb-4">Saisir ma commande</h2>
 				{{ form_start (form)}}
 				<label for="" class="text-primary mt-2">Nom</label>
@@ -25,7 +25,19 @@
 
 
 			</div>
-			<div class="col-4"></div>
+			<div class="col-6 mt-5 "><br><br><br><br>
+				<div class="card ">
+					<div class="card-body">
+						<h5 class="card-title text-primary">Montant à payer :
+							{{total}}
+							Eur</h5>
+                        <h5 class="text-primary">Frais de livraison : </h5>
+						<a href="#" class="btn btn-outline-success mt-2">Payer</a>
+					</div>
+				</div>
+
+
+			</div>
 
 
 		</div>
